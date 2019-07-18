@@ -1,0 +1,53 @@
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: dept-service
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    timeout: 100s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+    database: 2
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dept?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+
+
+
+mybatis:
+  type-aliases-package: demo.ms.dept.entity    # 所有Entity别名类所在包
+  mapper-locations:
+    - classpath:/mapper/**/*.xml                       # mapper映射文件
+
+
+
+
+
+
+logging:
+  level:
+    demo.ms.dept: debug
